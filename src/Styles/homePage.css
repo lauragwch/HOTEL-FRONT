@@ -1,0 +1,59 @@
+/* HomePage.css */
+.home-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: no-repeat center center/cover;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 80px; /* Décalage pour éviter la superposition avec la Navbar */
+}
+
+.home-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.content {
+  z-index: 2;
+  padding: 20px;
+}
+
+.title {
+  font-size: 4rem;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 2rem;
+}
+
+.button {
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  background-color: #d4a373;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #b5895f;
+}
