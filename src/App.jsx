@@ -4,6 +4,10 @@ import HomePage from "./Pages/homePage";
 import ServicesPage from "./Pages/servicesPage";
 import RoomsPage from "./Pages/roomsPage";
 import LoginPage from "./Pages/loginPage";
+import RegisterPage from "./Pages/registerPage";
+import ReservationPage from "./Pages/reservationPage";
+import ProfilPage from "./Pages/ProfilPage";
+
 // import RoomPage from "./Pages/roomPage";
 import { useState } from "react";
 import NavBar from "./Components/navBar";
@@ -20,6 +24,9 @@ function App() {
             {/* <Route path="/chambres/:id" element={<RoomPage />} /> */}
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/reservations" element={<ReservationPage />} />
+            <Route path="/profile" element={<ProfilPage />} />
         </Routes>
         </BrowserRouter>
     );

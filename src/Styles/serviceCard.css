@@ -1,11 +1,90 @@
-li{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+/* serviceCard.css */
+
+/* Style de la carte */
+.card {
+    width: 18rem; /* Largeur fixe comme dans le JSX */
+    border: none; /* Suppression de la bordure par défaut pour un look épuré */
+    border-radius: 15px; /* Coins arrondis pour modernité */
+    overflow: hidden; /* Évite que l'image dépasse */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation au survol */
+    background-color: #fff; /* Fond blanc */
+  }
+  
+  /* Effet au survol */
+  .card:hover {
+    transform: translateY(-10px); /* Légère élévation */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée */
+  }
+  
+  /* Style de l'image */
+  .card-img-top {
+    height: 200px; /* Hauteur fixe comme dans le JSX */
+    width: 100%; /* Pleine largeur de la carte */
+    object-fit: cover; /* Remplace styles={{objectFit: "contain"}} pour un meilleur rendu */
+    border-top-left-radius: 15px; /* Coins arrondis en haut */
+    border-top-right-radius: 15px;
+  }
+  
+  /* Corps de la carte */
+  .card-body {
+    padding: 20px; /* Espacement interne */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #e0e0e0;
-    padding: 10px;
-    cursor: pointer;
-}
+    flex-direction: column;
+    justify-content: space-between; /* Répartit l'espace entre éléments */
+  }
+  
+  /* Titre de la carte */
+  .card-title {
+    font-family: 'Playfair Display', serif; /* Police élégante */
+    font-size: 1.5rem; /* Taille du titre */
+    color: #1a1a1a; /* Noir profond */
+    margin-bottom: 15px; /* Espacement sous le titre */
+  }
+  
+  /* Texte de la carte (description et prix) */
+  .card-text {
+    font-family: 'Roboto', sans-serif; /* Police sobre */
+    font-size: 1rem; /* Taille standard */
+    color: #666; /* Gris moyen pour contraste */
+    margin-bottom: 20px; /* Espacement avant le bouton */
+  }
+  
+  /* Suppression des puces par défaut pour la liste */
+  .card-text li {
+    list-style: none; /* Pas de puces */
+    margin-bottom: 8px; /* Espacement entre les éléments */
+  }
+  
+  /* Bouton */
+  .btn-primary {
+    background-color: #d4a373; /* Doré subtil, cohérent avec HomePage */
+    border: none; /* Pas de bordure */
+    border-radius: 25px; /* Coins arrondis */
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    padding: 10px 20px; /* Taille confortable */
+    transition: background-color 0.3s ease; /* Transition douce */
+  }
+  
+  .btn-primary:hover {
+    background-color: #b5895f; /* Teinte plus foncée au survol */
+  }
+  
+  /* Responsivité */
+  @media (max-width: 576px) {
+    .card {
+      width: 100%; /* Pleine largeur sur petits écrans */
+      max-width: 18rem; /* Limite à la taille initiale */
+      margin: 0 auto; /* Centrage */
+    }
+  
+    .card-title {
+      font-size: 1.3rem; /* Titre légèrement réduit */
+    }
+  
+    .btn-primary {
+      font-size: 1rem; /* Bouton plus petit */
+      padding: 8px 16px;
+    }
+  }

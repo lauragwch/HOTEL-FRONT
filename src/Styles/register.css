@@ -1,0 +1,151 @@
+/* register.css */
+
+/* Page entière */
+.register-page {
+    min-height: 100vh; /* Pleine hauteur */
+    background-color: #f8f9fa; /* Fond gris clair comme ServicesPage */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px; /* Décalage pour la Navbar fixe */
+  }
+  
+  /* Conteneur du formulaire */
+  .register-container {
+    background-color: #fff; /* Fond blanc */
+    border-radius: 15px; /* Coins arrondis */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    padding: 40px; /* Espacement interne généreux */
+    width: 100%;
+    max-width: 450px; /* Largeur maximale raisonnable */
+    transition: transform 0.3s ease; /* Animation au mouvement */
+  }
+  
+  /* Animation au mouvement de la souris (exemple) */
+  .register-container:hover {
+    transform: translateY(-5px); /* Légère élévation */
+  }
+  
+  /* Titre */
+  h2 {
+    font-family: 'Playfair Display', serif; /* Police élégante */
+    font-size: 2.5rem;
+    color: #1a1a1a; /* Noir profond */
+    text-align: center;
+    margin-bottom: 30px; /* Espacement sous le titre */
+  }
+  
+  h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #d4a373; /* Doré subtil */
+    margin: 10px auto 0; /* Centrage */
+  }
+  
+  /* Groupe de formulaire */
+  .form-group {
+    position: relative;
+    margin-bottom: 25px; /* Espacement entre champs */
+  }
+  
+  /* Champs de saisie */
+  .form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: #333;
+    border: 1px solid #ddd; /* Bordure légère */
+    border-radius: 8px; /* Coins légèrement arrondis */
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group input:focus {
+    border-color: #d4a373; /* Doré au focus */
+  }
+  
+  /* Labels flottants */
+  .form-group label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    color: #666; /* Gris moyen */
+    background-color: #fff; /* Fond blanc pour chevauchement */
+    padding: 0 5px;
+    transition: all 0.3s ease;
+    pointer-events: none; /* Évite d’interférer avec le clic */
+  }
+  
+  .form-group input:focus + label,
+  .form-group input:not(:placeholder-shown) + label {
+    top: -8px; /* Déplacement vers le haut */
+    font-size: 0.85rem;
+    color: #d4a373; /* Doré au focus ou remplissage */
+  }
+  
+  /* Bouton d’inscription */
+  .register-btn {
+    width: 100%;
+    padding: 12px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    color: #fff;
+    background-color: #d4a373; /* Doré subtil */
+    border: none;
+    border-radius: 25px; /* Coins arrondis */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .register-btn:hover {
+    background-color: #b5895f; /* Teinte plus foncée au survol */
+  }
+  
+  /* Lien vers la connexion */
+  .login-link {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .login-link p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.95rem;
+    color: #666;
+  }
+  
+  .login-link a {
+    color: #d4a373; /* Doré pour le lien */
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .login-link a:hover {
+    color: #b5895f; /* Teinte plus foncée au survol */
+  }
+  
+  /* Responsivité */
+  @media (max-width: 576px) {
+    .register-container {
+      padding: 20px; /* Réduction du padding */
+      max-width: 90%; /* Plus large sur mobile */
+    }
+  
+    h2 {
+      font-size: 2rem;
+    }
+  
+    .form-group input {
+      padding: 10px;
+    }
+  
+    .register-btn {
+      padding: 10px;
+      font-size: 1rem;
+    }
+  }

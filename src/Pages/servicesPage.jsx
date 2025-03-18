@@ -30,6 +30,7 @@ const ServicesPage = () => {
                     return <ServiceCard key={index} service={service} />
                 })}
             </div>
+
         </Container>
 
     </>
