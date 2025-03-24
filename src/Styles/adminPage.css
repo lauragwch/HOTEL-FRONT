@@ -1,0 +1,168 @@
+/* adminPage.css */
+
+.admin-page {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    padding: 100px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #d4a373;
+    margin: 10px auto 0;
+}
+
+.admin-accordion {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.accordion-item {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.accordion-header {
+    font-family: 'Playfair Display', serif;
+}
+
+.accordion-button {
+    background-color: #c1b7ad;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-radius: 8px 8px 0 0;
+    transition: background-color 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #b69d84;
+    color: #fff;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.accordion-body {
+    padding: 20px;
+}
+
+.rooms-table,
+.services-table {
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.rooms-table th,
+.rooms-table td,
+.services-table th,
+.services-table td {
+    vertical-align: middle;
+    padding: 12px;
+}
+
+.rooms-table th,
+.services-table th {
+    background-color: #c1b7ad;
+    color: #fff;
+    font-weight: 500;
+}
+
+.rooms-table td,
+.services-table td {
+    font-size: 1rem;
+    color: #333;
+}
+
+.form-control {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    border-radius: 8px;
+    padding: 6px 12px;
+}
+
+.btn-primary {
+    background-color: #c1b7ad;
+    border-color: #c1b7ad;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    border-radius: 25px;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #b5895f;
+    border-color: #b5895f;
+}
+
+.btn-success {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    border-radius: 25px;
+    padding: 8px 16px;
+}
+
+.btn-danger {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    border-radius: 25px;
+    padding: 8px 16px;
+}
+
+.mb-4 .row > div {
+    margin-bottom: 10px; /* Espacement entre les champs sur petits écrans */
+}
+
+@media (max-width: 576px) {
+    .admin-page {
+        padding: 80px 10px 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .accordion-button {
+        font-size: 1.2rem;
+    }
+
+    .rooms-table,
+    .services-table {
+        font-size: 0.9rem;
+    }
+
+    .form-control {
+        font-size: 0.9rem;
+        padding: 4px 8px;
+    }
+
+    .btn-primary,
+    .btn-success,
+    .btn-danger {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+}

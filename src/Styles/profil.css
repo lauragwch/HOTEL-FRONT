@@ -1,0 +1,139 @@
+/* profil.css */
+
+/* Page entière */
+.profil-page {
+    min-height: 100vh; /* Pleine hauteur */
+    background-color: #f8f9fa; /* Fond gris clair */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px; /* Décalage pour la Navbar fixe */
+}
+
+/* Conteneur principal */
+.profil-container {
+    background-color: #fff; /* Fond blanc */
+    border-radius: 15px; /* Coins arrondis */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    padding: 40px; /* Espacement interne généreux */
+    width: 100%;
+    max-width: 600px; /* Largeur adaptée pour le profil */
+    transition: transform 0.3s ease; /* Animation au mouvement */
+    display: flex; /* Ajout de Flexbox */
+    flex-direction: column; /* Organisation verticale */
+    align-items: center; /* Centrage horizontal */
+    justify-content: center; /* Centrage vertical */
+}
+
+/* Animation au mouvement de la souris */
+.profil-container:hover {
+    transform: translateY(-5px); /* Légère élévation */
+}
+
+/* Titre "Bienvenue" */
+h1 {
+    font-family: 'Playfair Display', serif; /* Police élégante */
+    font-size: 2.5rem;
+    color: #1a1a1a; /* Noir profond */
+    text-align: center;
+    margin-bottom: 30px; /* Espacement sous le titre */
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #d4a373; /* Doré subtil */
+    margin: 10px auto 0; /* Centrage */
+}
+
+/* Personnalisation de la carte Bootstrap */
+.card {
+    border: 1px solid #ddd; /* Bordure légère */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Ombre légère */
+}
+
+/* Titre de la carte (prénom + nom) */
+.card-title {
+    font-family: 'Playfair Display', serif; /* Police élégante */
+    font-size: 1.5rem;
+    color: #1a1a1a; /* Noir profond */
+    text-align: center;
+}
+
+/* Liste des détails du profil */
+.profil-details {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    color: #333; /* Gris foncé */
+    padding: 0; /* Supprime le padding par défaut */
+    margin: 0 0 20px 0; /* Espacement en bas */
+}
+
+/* Style des éléments de la liste */
+.profil-details li {
+    list-style: none; /* Supprime les puces par défaut */
+    margin: 10px 0; /* Espacement entre les lignes */
+}
+
+/* Label des champs dans la liste */
+.profil-details li::before {
+    content: attr(data-label); /* Utilise l'attribut data-label pour le texte */
+    font-weight: bold;
+    color: #1a1a1a; /* Noir profond pour les labels */
+    margin-right: 10px; /* Espacement entre label et valeur */
+}
+
+/* Bouton Bootstrap personnalisé */
+.btn-primary {
+    background-color: #d4a373; /* Doré subtil */
+    border-color: #d4a373;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    border-radius: 25px; /* Coins arrondis */
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #b5895f; /* Teinte plus foncée au survol */
+    border-color: #b5895f;
+}
+
+.card-body-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre horizontalement */
+    text-align: center; /* Centre le texte (pour Card.Title) */
+}
+
+/* Responsivité */
+@media (max-width: 576px) {
+    .profil-container {
+        padding: 20px; /* Réduction du padding */
+        max-width: 90%; /* Plus large sur mobile */
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .card {
+        width: 100%; /* Pleine largeur sur mobile */
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+    }
+
+    .profil-details {
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        padding: 8px 16px;
+        font-size: 1rem;
+    }
+}

@@ -4,6 +4,8 @@ import "../styles/roomCard.css";
 import simple from "../assets/simple.jpg";
 import double from "../assets/double.jpg";
 import suite from "../assets/suite.jpg";
+import reservationPage from "../Pages/reservationPage";
+import { useNavigate } from 'react-router-dom';
 
 const RoomCard = ({room}) => {
     
@@ -25,7 +27,7 @@ const RoomCard = ({room}) => {
 
             
           </Card.Text>
-          <Button variant="primary">Réserver</Button>
+          <Button variant="primary" onClick={reservationPage}>Réserver</Button>
         </Card.Body>
       </Card>
     );

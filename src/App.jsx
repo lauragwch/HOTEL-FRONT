@@ -7,6 +7,9 @@ import LoginPage from "./Pages/loginPage";
 import RegisterPage from "./Pages/registerPage";
 import ReservationPage from "./Pages/reservationPage";
 import ProfilPage from "./Pages/ProfilPage";
+import EditProfilPage from "./Pages/editProfilPage";
+import AdminPage from "./Pages/adminPage";
+
 
 // import RoomPage from "./Pages/roomPage";
 import { useState } from "react";
@@ -27,6 +30,10 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/reservations" element={<ReservationPage />} />
             <Route path="/profile" element={<ProfilPage />} />
+            <Route path="/edit/:id" element={<EditProfilPage />} />
+            <Route path="/admin" element={<AdminPage />} />
+        
+
         </Routes>
         </BrowserRouter>
     );
