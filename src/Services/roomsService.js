@@ -1,16 +1,18 @@
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_URL_API;
+
 function getRooms() {
-  return axios.get("http://localhost:3000/rooms");
+  return axios.get(API_URL + "rooms");
 }
 
 function getRoomById(id) {
-  return axios.get(`http://localhost:3000/rooms/${id}`);
+  return axios.get(API_URL + `rooms/${id}`);
 }
 
 function updateRoom(id, data) {
   const token = localStorage.getItem("authorization");
-  return axios.patch(`http://localhost:3000/rooms/${id}`, data,
+  return axios.patch(API_URL +`rooms/${id}`, data,
     {
       headers: {
         authorization: token,
@@ -20,14 +22,14 @@ function updateRoom(id, data) {
 }
 function addRoom(data) {
   const token = localStorage.getItem("authorization");
-  return axios.post("http://localhost:3000/rooms", data, {
+  return axios.post(API_URL +"rooms", data, {
       headers: { authorization: token },
   });
 }
 
 function deleteRoom(id) {
   const token = localStorage.getItem("authorization");
-  return axios.delete(`http://localhost:3000/rooms/${id}`, {
+  return axios.delete(API_URL +`rooms/${id}`, {
       headers: { authorization: token },
   });
 }

@@ -1,25 +1,43 @@
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../Services/authService";
 // import "../Styles/login.css"; // Import du CSS
+import AuthContext from "../Contextes/AuthContext";
+import { jwtDecode } from "jwt-decode";
+import axios from "axios";
+
 
 const LoginPage = () => {
-  const [user, setUser] = useState({ email: '', password: '' });
+  const [currentUser, setCurrentUser] = useState({ email: '', password: '' });
 
   const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
   };
+
+  const {setIsConnected, setRole, setUser} = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await AuthService.login(user);
-      console.log(response.data);
+      const response = await AuthService.login(currentUser);
+      const data = jwtDecode(response.data.token);
+      axios.defaults.headers['Authorization'] = 'Bearer' + response.data.token ;
+      console.log(data);
+      setRole(data.role);
+      setUser({
+        id: data.id,
+        email: data.email,
+        role: data.role,
+        nom: data.nom,
+        prenom: data.prenom,
+      })
+      setIsConnected(true);
+      navigate("/");
       const token = response.data.token;
         localStorage.setItem("authorization", token);
         navigate("/");
@@ -36,7 +54,7 @@ const LoginPage = () => {
           <Form.Control
             type="email"
             placeholder="Enter email"
-            value={user.email}
+            value={currentUser.email}
             name="email"
             onChange={handleChange}
           />
@@ -47,7 +65,7 @@ const LoginPage = () => {
           <Form.Control
             type="password"
             placeholder="Password"
-            value={user.password}
+            value={currentUser.password}
             name="password"
             onChange={handleChange}
           />

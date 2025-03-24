@@ -1,0 +1,208 @@
+/* bookingConfirmation.css */
+
+.booking-confirmation-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+    margin-top: 80px;
+}
+
+/* Titre principal */
+.booking-confirmation-container h1 {
+    font-size: 3rem;
+    font-family: 'Playfair Display', serif;
+    color: #d4a373;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Sous-titre (numéro de chambre) */
+.booking-confirmation-container h3 {
+    font-size: 1.75rem;
+    font-family: 'Roboto', sans-serif;
+    color: #343a40;
+    margin-bottom: 1rem;
+    text-align: center; /* Centrage ajouté */
+}
+
+/* Paragraphe (prix, etc.) */
+.booking-confirmation-container p {
+    font-size: 1.25rem;
+    font-family: 'Roboto', sans-serif;
+    color: #6c757d;
+    margin-bottom: 1rem;
+    text-align: center; /* Centrage ajouté */
+}
+
+/* Bouton de confirmation */
+.booking-confirmation-container .btn-primary {
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    background-color: #d4a373;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block; /* Pour centrer le bouton */
+    margin: 0 auto; /* Centrage horizontal du bouton */
+}
+
+.booking-confirmation-container .btn-primary:hover {
+    background-color: #b5895f;
+}
+
+/* Style responsif */
+@media (max-width: 768px) {
+    .booking-confirmation-container {
+        padding: 1.5rem;
+        margin-top: 60px;
+    }
+
+    .booking-confirmation-container h1 {
+        font-size: 2.5rem;
+    }
+
+    .booking-confirmation-container h3 {
+        font-size: 1.5rem;
+    }
+
+    .booking-confirmation-container p {
+        font-size: 1rem;
+    }
+
+    .booking-confirmation-container .btn-primary {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* Gestion des erreurs ou chargement */
+.error-message,
+.loading-message {
+    text-align: center;
+    font-size: 1.25rem;
+    font-family: 'Roboto', sans-serif;
+    color: #dc3545;
+    margin-top: 2rem;
+}
+
+.loading-message {
+    color: #6c757d;
+}
+
+.date-field {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.date-field label {
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25rem;
+    color: #343a40;
+    margin-bottom: 0.5rem;
+}
+
+.date-field input[type="date"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 1.1rem;
+    font-family: 'Roboto', sans-serif;
+    color: #6c757d;
+    border: 1px solid #d4a373;
+    border-radius: 8px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.date-field input[type="date"]:focus {
+    outline: none;
+    border-color: #b5895f;
+    box-shadow: 0 0 5px rgba(212, 163, 115, 0.5);
+}
+
+/* Ajustement responsif */
+@media (max-width: 768px) {
+    .date-field input[type="date"] {
+        max-width: 250px;
+        font-size: 1rem;
+        padding: 8px;
+    }
+
+    .date-field label {
+        font-size: 1rem;
+    }
+}
+
+/* Style de la modale */
+.modal-content {
+    border-radius: 8px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.modal-header {
+    background-color: #d4a373; /* Couleur principale */
+    color: #fff;
+    border-bottom: none;
+}
+
+.modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+}
+
+.modal-body {
+    color: #343a40; /* Gris foncé pour le texte */
+    padding: 1.5rem;
+}
+
+.modal-body p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    text-align: left; /* Alignement à gauche pour lisibilité */
+}
+
+.modal-body strong {
+    color: #d4a373; /* Couleur principale pour les titres */
+}
+
+.modal-footer {
+    border-top: none;
+    justify-content: center;
+}
+
+.modal-footer .btn-primary {
+    background-color: #d4a373;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border-radius: 25px;
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: #b5895f;
+}
+
+/* Ajustement responsif */
+@media (max-width: 768px) {
+    .modal-title {
+        font-size: 1.5rem;
+    }
+
+    .modal-body p {
+        font-size: 1rem;
+    }
+
+    .modal-footer .btn-primary {
+        padding: 8px 16px;
+        font-size: 1rem;
+    }
+}

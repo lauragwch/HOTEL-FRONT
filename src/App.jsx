@@ -9,34 +9,47 @@ import ReservationPage from "./Pages/reservationPage";
 import ProfilPage from "./Pages/ProfilPage";
 import EditProfilPage from "./Pages/editProfilPage";
 import AdminPage from "./Pages/adminPage";
-
-
+import AuthContext from "./Contextes/AuthContext";
 // import RoomPage from "./Pages/roomPage";
 import { useState } from "react";
 import NavBar from "./Components/navBar";
+import authService from "./Services/authService";
+import BookingConfirmation from "./Pages/bookingConfirmationPage";
 
 
 function App() {
+    const [isConnected, setIsConnected] = useState(authService.isConnected());
+    const [role, setRole] = useState(authService.getRole());
+    const [user, setUser] = useState(authService.getUser());
 
     return (
-        <BrowserRouter>
-        <NavBar />
-        <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/chambres" element={<RoomsPage />} />
-            {/* <Route path="/chambres/:id" element={<RoomPage />} /> */}
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/reservations" element={<ReservationPage />} />
-            <Route path="/profile" element={<ProfilPage />} />
-            <Route path="/edit/:id" element={<EditProfilPage />} />
-            <Route path="/admin" element={<AdminPage />} />
-        
+        <AuthContext.Provider value={{ isConnected, setIsConnected, role, setRole, user, setUser }}>
+            <BrowserRouter>
+                <NavBar />
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/chambres" element={<RoomsPage />} />
+                    {/* <Route path="/chambres/:id" element={<RoomPage />} /> */}
+                    <Route path="/services" element={<ServicesPage />} />
 
-        </Routes>
-        </BrowserRouter>
+                    <Route path="/login" element={<LoginPage />} />
+                    {role == 'ADMIN' ?
+                        <Route path="/admin" element={<AdminPage />} /> :
+                        <Route path='*' element={<HomePage />} />
+                    }
+
+
+                    <Route path="/register" element={<RegisterPage />} />
+                    <Route path="/reservations" element={<ReservationPage />} />
+                    <Route path="/profile" element={<ProfilPage />} />
+                    <Route path="/edit/:id" element={<EditProfilPage />} />
+                    <Route path="/booking/:roomId" element={<BookingConfirmation />} />
+
+
+                </Routes>
+            </BrowserRouter>
+        </AuthContext.Provider>
     );
-    }
+}
 
 export default App;
