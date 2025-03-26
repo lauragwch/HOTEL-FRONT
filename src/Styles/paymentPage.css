@@ -1,0 +1,123 @@
+.payment-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.payment-container h1 {
+    font-family: 'Playfair Display', serif;
+    color: #d4a373;
+    margin-bottom: 1.5rem;
+}
+
+.payment-container p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    color: #343a40;
+    margin: 0.5rem 0;
+}
+
+.payment-container h5 {
+    font-family: 'Playfair Display', serif;
+    color: #d4a373;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.payment-container ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.payment-container li {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    color: #343a40;
+    margin-bottom: 0.5rem;
+}
+
+.payment-container button {
+    margin-top: 1.5rem;
+}
+
+/* Ajustement responsif */
+@media (max-width: 768px) {
+    .payment-container {
+        padding: 1rem;
+    }
+
+    .payment-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .payment-container p,
+    .payment-container li {
+        font-size: 1rem;
+    }
+}
+
+.payment-container h5 {
+    font-family: 'Playfair Display', serif;
+    color: #d4a373;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.payment-select {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    color: #343a40;
+    border-color: #d4a373;
+    max-width: 380px;
+    margin-bottom: 1.5rem;
+}
+
+.payment-select:focus {
+    border-color: #d4a373;
+    box-shadow: 0 0 0 0.2rem rgba(212, 163, 115, 0.25);
+}
+
+/* Ajustement responsif */
+@media (max-width: 768px) {
+    .payment-select {
+        font-size: 1rem;
+        max-width: 100%;
+    }
+}
+
+.modal-body h5 {
+    font-family: 'Playfair Display', serif;
+    color: #d4a373;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.modal-body p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    color: #343a40;
+    margin: 0.5rem 0;
+}
+
+.modal-body ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.modal-body li {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    color: #343a40;
+    margin-bottom: 0.5rem;
+}
+
+/* Ajustement responsif */
+@media (max-width: 768px) {
+    .modal-body p,
+    .modal-body li {
+        font-size: 1rem;
+    }
+}

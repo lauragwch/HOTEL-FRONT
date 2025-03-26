@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
-import { Container, Button, Modal } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { Container, Button, Form } from "react-bootstrap";
+import { useEffect, useState, useContext } from "react";
 import roomsService from "../Services/roomsService";
-import reservationsService from "../Services/reservationsService"; // Import pour la réservation
+import servicesService from "../Services/servicesService";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../Contextes/AuthContext";
 import "../styles/bookingConfirmation.css";
 
 const BookingConfirmation = () => {
@@ -12,25 +13,25 @@ const BookingConfirmation = () => {
     const [room, setRoom] = useState(null);
     const [error, setError] = useState(null);
     const [reservation, setReservation] = useState({
-        id_room: roomId, // Pré-rempli avec roomId
+        id_room: roomId,
         checkin_date: "",
         checkout_date: "",
         total_price: "",
     });
     const [tarifNuit, setTarifNuit] = useState(0);
     const [jours, setJours] = useState(0);
-    const [showModal, setShowModal] = useState(false); // État pour la modale
+    const [services, setServices] = useState([]);
+    const [selectedServices, setSelectedServices] = useState([]);
+    const { user } = useContext(AuthContext);
 
-    // Récupérer les détails de la chambre
     useEffect(() => {
         const fetchRoom = async () => {
             try {
                 console.log("Fetching room with ID:", roomId);
                 const response = await roomsService.getRoomById(roomId);
-                console.log("API Response:", response.data);
                 setRoom(response.data);
-                setTarifNuit(response.data.price_per_night); // Tarif par nuit
-                setReservation((prev) => ({ ...prev, id_room: roomId })); // Assigner roomId
+                setTarifNuit(parseFloat(response.data.price_per_night));
+                setReservation((prev) => ({ ...prev, id_room: roomId }));
             } catch (error) {
                 console.error("Erreur:", error.response || error.message);
                 setError("Impossible de charger les détails de la chambre.");
@@ -39,7 +40,22 @@ const BookingConfirmation = () => {
         fetchRoom();
     }, [roomId]);
 
-    // Calculer le nombre de jours
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const response = await servicesService.getServices();
+                const parsedServices = response.data.map((service) => ({
+                    ...service,
+                    price: parseFloat(service.price),
+                }));
+                setServices(parsedServices);
+            } catch (error) {
+                console.error("Erreur lors de la récupération des services:", error);
+            }
+        };
+        fetchServices();
+    }, []);
+
     const nbJours = () => {
         const date1 = new Date(reservation.checkin_date);
         const date2 = new Date(reservation.checkout_date);
@@ -47,48 +63,63 @@ const BookingConfirmation = () => {
         setJours(Math.ceil(diff / (1000 * 60 * 60 * 24)) || 0);
     };
 
-    // Mettre à jour les jours quand les dates changent
     useEffect(() => {
         nbJours();
     }, [reservation.checkin_date, reservation.checkout_date]);
 
-    // Gestion des changements dans les inputs
+    const calculatePrices = () => {
+        const basePrice = parseFloat(tarifNuit) * jours;
+        const servicesPrice = selectedServices.reduce((total, serviceId) => {
+            const service = services.find((s) => s.id_service === serviceId);
+            return total + (service ? parseFloat(service.price) : 0);
+        }, 0);
+        const totalPrice = basePrice + servicesPrice;
+        return { basePrice, servicesPrice, totalPrice };
+    };
+
     const handleChange = (e) => {
         setReservation({ ...reservation, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            if (!reservation.checkin_date || !reservation.checkout_date || jours <= 0) {
-                setError("Veuillez sélectionner des dates valides.");
-                return;
-            }
-            const totalPrice = tarifNuit * jours;
-            const reservationData = {
-                ...reservation,
-                total_price: totalPrice,
-            };
-            console.log("Données envoyées:", reservationData);
-            await reservationsService.reservation(reservationData);
-            setShowModal(true); // Ouvre la modale après succès
-        } catch (error) {
-            console.error("Erreur lors de la réservation:", error.response || error.message);
-            setError(error.response?.data?.message || "Erreur lors de la réservation.");
-        }
+    const handleServiceChange = (serviceId) => {
+        setSelectedServices((prev) =>
+            prev.includes(serviceId)
+                ? prev.filter((id) => id !== serviceId)
+                : [...prev, serviceId]
+        );
     };
 
-    // Ferme la modale et redirige
-    const handleCloseModal = () => {
-        setShowModal(false);
-        navigate("/");
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!reservation.checkin_date || !reservation.checkout_date || jours <= 0) {
+            setError("Veuillez sélectionner des dates valides.");
+            return;
+        }
+        if (!user) {
+            setError("Utilisateur non connecté. Veuillez vous connecter.");
+            return;
+        }
+    
+        const { basePrice, servicesPrice, totalPrice } = calculatePrices();
+        const reservationData = {
+            id_client: user,
+            id_room: reservation.id_room,
+            checkin_date: reservation.checkin_date,
+            checkout_date: reservation.checkout_date,
+            basePrice,
+            servicesPrice,
+            total_price: totalPrice,
+            selectedServices,
+            allServices: services, // Passe tous les services pour l’affichage
+        };
+    
+        navigate(`/payment/${roomId}`, { state: reservationData });
     };
 
     if (error) return <div className="error-message">{error}</div>;
     if (!room) return <div className="loading-message">Chargement...</div>;
 
     return (
-        <>
         <Container className="booking-confirmation-container">
             <h1>Confirmation de réservation</h1>
             <h3>Chambre numéro {room.room_number}</h3>
@@ -102,7 +133,7 @@ const BookingConfirmation = () => {
                         name="checkin_date"
                         value={reservation.checkin_date}
                         onChange={handleChange}
-                        min={new Date().toISOString().split("T")[0]} // Pas de dates passées
+                        min={new Date().toISOString().split("T")[0]}
                         required
                     />
                 </div>
@@ -116,15 +147,32 @@ const BookingConfirmation = () => {
                         min={
                             reservation.checkin_date ||
                             new Date().toISOString().split("T")[0]
-                        } // Pas avant la date d'arrivée
+                        }
                         required
                     />
                 </div>
 
                 {jours > 0 && (
-                    <p>
-                        Durée: {jours} nuit(s) - Total: {tarifNuit * jours}€
-                    </p>
+                    <>
+                        <h5>Ajouter des services</h5>
+                            {services.map((service) => (
+                                <Form.Check
+                                    key={service.id_service}
+                                    type="checkbox"
+                                    id={`service-${service.id_service}`}
+                                    label={`${service.service_name} (${service.price}€)`}
+                                    checked={selectedServices.includes(service.id_service)}
+                                    onChange={() => handleServiceChange(service.id_service)}
+                                />
+                            ))}
+                      
+
+                        <div className="cost-summary">
+                            <p><strong>Coût de la réservation (sans services) :</strong> {calculatePrices().basePrice}€</p>
+                            <p><strong>Coût des services :</strong> {calculatePrices().servicesPrice}€</p>
+                            <p><strong>Coût total :</strong> {calculatePrices().totalPrice}€</p>
+                        </div>
+                    </>
                 )}
 
                 <Button variant="primary" type="submit">
@@ -132,37 +180,6 @@ const BookingConfirmation = () => {
                 </Button>
             </form>
         </Container>
-        
-        {/* Modale de confirmation */}
-        <Modal show={showModal} onHide={handleCloseModal} centered>
-        <Modal.Header closeButton>
-            <Modal.Title>Réservation confirmée</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-            <p>
-                Votre réservation pour la chambre numéro {room?.room_number} est confirmée !
-            </p>
-            <p>
-                <strong>Date d'arrivée :</strong> {reservation.checkin_date}
-            </p>
-            <p>
-                <strong>Date de départ :</strong> {reservation.checkout_date}
-            </p>
-            <p>
-                <strong>Total :</strong> {tarifNuit * jours}€
-            </p>
-            <p>
-                <strong>Informations :</strong> Veuillez arriver à partir de 14h00 le jour de votre arrivée. Merci de nous contacter en cas de retard.
-            </p>
-        </Modal.Body>
-        <Modal.Footer>
-            <Button variant="primary" onClick={handleCloseModal}>
-                Fermer
-            </Button>
-        </Modal.Footer>
-    </Modal>
-    </>
-
     );
 };
 

@@ -19,5 +19,27 @@ function editProfil(id, user) {
     })
 }
 
+function getClients() {
+    const token = localStorage.getItem("authorization");
+    return axios.get("http://localhost:3000/clients", {
+        headers: {
+            authorization: token
+        }
+    })
+}
 
-export default { getProfil, editProfil };
+function resetPassword(token, data) {
+    return axios.post(`http://localhost:3000/clients/password_reset/${token}`, data, 
+    {
+        headers: {
+            authorization: token
+        }
+    })
+}
+
+function sendEmailToChangePassword(email) {
+    return axios.post(`http://localhost:3000/clients/password_forget`, { email })
+}
+
+
+export default {getProfil, editProfil, getClients, resetPassword, sendEmailToChangePassword};

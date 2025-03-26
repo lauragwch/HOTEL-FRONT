@@ -15,6 +15,8 @@ import { useState } from "react";
 import NavBar from "./Components/navBar";
 import authService from "./Services/authService";
 import BookingConfirmation from "./Pages/bookingConfirmationPage";
+import PaymentPage from "./Pages/paymentPage";
+import ResetPasswordPage from './Pages/resetPasswordPage'
 
 
 function App() {
@@ -44,6 +46,8 @@ function App() {
                     <Route path="/profile" element={<ProfilPage />} />
                     <Route path="/edit/:id" element={<EditProfilPage />} />
                     <Route path="/booking/:roomId" element={<BookingConfirmation />} />
+                    <Route path="/payment/:roomId" element={<PaymentPage />} />
+                    <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
 
 
                 </Routes>

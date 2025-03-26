@@ -206,3 +206,93 @@
         font-size: 1rem;
     }
 }
+
+/* Style pour la section des services dans la modale */
+.modal-body h5 {
+    font-family: 'Playfair Display', serif;
+    color: #d4a373;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.form-check {
+    margin-bottom: 0.75rem;
+    text-align: left;
+}
+
+.form-check-label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    color: #343a40;
+}
+
+.form-check-input {
+    margin-right: 0.5rem;
+}
+
+.form-check-input:checked {
+    background-color: #d4a373;
+    border-color: #d4a373;
+}
+
+/* Ajustement responsif */
+@media (max-width: 768px) {
+    .form-check-label {
+        font-size: 1rem;
+    }
+}
+
+.cost-summary {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.cost-summary p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+    color: #343a40;
+}
+
+.cost-summary p strong {
+    color: #d4a373;
+}
+
+h5 {
+    font-family: 'Playfair Display', serif;
+    color: #d4a373;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.form-check {
+    margin-bottom: 0.75rem;
+    text-align: left;
+}
+
+.form-check-label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    color: #343a40;
+}
+
+.form-check-input {
+    margin-right: 0.5rem;
+}
+
+.form-check-input:checked {
+    background-color: #d4a373;
+    border-color: #d4a373;
+}
+
+/* Ajustement responsif */
+@media (max-width: 768px) {
+    .cost-summary p {
+        font-size: 1rem;
+    }
+
+    .form-check-label {
+        font-size: 1rem;
+    }
+}

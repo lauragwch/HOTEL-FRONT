@@ -26,7 +26,7 @@ const LoginPage = () => {
     try {
       const response = await AuthService.login(currentUser);
       const data = jwtDecode(response.data.token);
-      axios.defaults.headers['Authorization'] = 'Bearer' + response.data.token ;
+      axios.defaults.headers['Authorization'] = 'Bearer ' + response.data.token ;
       console.log(data);
       setRole(data.role);
       setUser({
