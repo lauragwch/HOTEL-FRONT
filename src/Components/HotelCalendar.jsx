@@ -22,27 +22,27 @@ const HotelCalendar = () => {
     }
 
 
-    const fetchReservations = async () => {
-        try {
-            const response = await reservationsService.getReservations();
-            const data = response.data.map((reservation) => {
-                const client = profilService.getProfil(reservation.id_client);
-                return {
-                    title: client.first_name + " " + client.last_name,
-                    start: reservation.checkin_date,
-                    end: reservation.checkout_date,
-                    backgroundColor: reservation.reservation_status === "Confirmée" ? "#28a745" : reservation.reservation_status === "En attende de validation" ? "#ffc107" : "#dc3545", 
-                }
-            });
-            setReservations(data);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+const fetchReservations = async () => {
+    try {
+        const response = await reservationsService.getReservations();
+        const data = await Promise.all(response.data.map(async (reservation) => {
 
-    useEffect(() => {
-        fetchReservations();
-    }, []);
+            return {
+                title: reservation.first_name + " " + reservation.last_name,
+                start: reservation.checkin_date,
+                end: reservation.checkout_date,
+                backgroundColor: reservation.reservation_status === "Confirmée" ? "#28a745" : reservation.reservation_status === "En attente de validation" ? "#ffc107" : "#dc3545", 
+            }
+        }));
+        setReservations(data);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+useEffect(() => {
+    fetchReservations();
+}, []);
 
     console.log(reservations);
 

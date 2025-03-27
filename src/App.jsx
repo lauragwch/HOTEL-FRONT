@@ -17,7 +17,8 @@ import authService from "./Services/authService";
 import BookingConfirmation from "./Pages/bookingConfirmationPage";
 import PaymentPage from "./Pages/paymentPage";
 import ResetPasswordPage from './Pages/resetPasswordPage'
-
+import ForgotPasswordPage from './Pages/forgotPasswordPage'
+import "./App.css";
 
 function App() {
     const [isConnected, setIsConnected] = useState(authService.isConnected());
@@ -28,6 +29,7 @@ function App() {
         <AuthContext.Provider value={{ isConnected, setIsConnected, role, setRole, user, setUser }}>
             <BrowserRouter>
                 <NavBar />
+                <div className="page-container">
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/chambres" element={<RoomsPage />} />
@@ -48,9 +50,11 @@ function App() {
                     <Route path="/booking/:roomId" element={<BookingConfirmation />} />
                     <Route path="/payment/:roomId" element={<PaymentPage />} />
                     <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
+                    <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
 
                 </Routes>
+                </div>
             </BrowserRouter>
         </AuthContext.Provider>
     );

@@ -279,7 +279,7 @@ const AdminPage = () => {
         <div className="admin-page">
             <h1>Gestion administrative</h1>
 
-            <Accordion defaultActiveKey="0" className="admin-accordion">
+            <Accordion  className="admin-accordion">
                 {/* Accordéon pour les chambres */}
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Chambres</Accordion.Header>

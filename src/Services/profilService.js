@@ -47,7 +47,7 @@ function resetPassword(token, data) {
 }
 
 function sendEmailToChangePassword(email) {
-    return axios.post(`http://localhost:3000/clients/password_forget`, { email })
+    return axios.post(`http://localhost:3000/clients/password_forget`, email)
 }
 
 

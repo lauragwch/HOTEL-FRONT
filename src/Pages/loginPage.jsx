@@ -17,7 +17,7 @@ const LoginPage = () => {
     setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
   };
 
-  const {setIsConnected, setRole, setUser} = useContext(AuthContext);
+  const { setIsConnected, setRole, setUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ const LoginPage = () => {
     try {
       const response = await AuthService.login(currentUser);
       const data = jwtDecode(response.data.token);
-      axios.defaults.headers['Authorization'] = 'Bearer ' + response.data.token ;
+      axios.defaults.headers['Authorization'] = 'Bearer ' + response.data.token;
       console.log(data);
       setRole(data.role);
       setUser({
@@ -39,8 +39,8 @@ const LoginPage = () => {
       setIsConnected(true);
       navigate("/");
       const token = response.data.token;
-        localStorage.setItem("authorization", token);
-        navigate("/");
+      localStorage.setItem("authorization", token);
+      navigate("/");
       // Ajoutez une redirection ou un message de succès ici
     } catch (error) {
       console.log(error);
@@ -76,6 +76,14 @@ const LoginPage = () => {
           Se connecter
         </Button>
       </Form>
+
+      <Button
+        variant="link"
+        onClick={() => navigate("/forgot-password")}
+        className="w-100 text-center"
+      >
+        Mot de passe oublié ?
+      </Button>
 
       <a href="/register" className="register-link">
         Nouveau ? Inscription

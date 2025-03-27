@@ -1,6 +1,8 @@
 import axios from "axios";
 import {jwtDecode} from "jwt-decode";
 
+const API_URL = 'http://localhost:3000/auth';
+
 function login (user) {
     return axios.post('http://localhost:3000/auth/login', user);
 }
@@ -46,4 +48,8 @@ function getUser () {
     return {};
 }
 
-export default {login, isConnected, getRole, getUser};
+const forgotPassword = (data) => {
+    return axios.post(`${API_URL}/`, data);
+};
+
+export default {login, isConnected, getRole, getUser, logout, forgotPassword};
