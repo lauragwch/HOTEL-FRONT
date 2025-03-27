@@ -15,7 +15,7 @@ function isConnected () {
     if (token) {
         const data = jwtDecode(token);
         if (data.exp * 1000 > new Date().getTime()) {
-            axios.defaults.headers['Authorization'] = `Bearer ${token}`;
+            axios.defaults.headers['Authorization'] = `${token}`;
             return true;
         }
     }

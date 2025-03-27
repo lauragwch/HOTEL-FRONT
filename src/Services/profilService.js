@@ -28,6 +28,15 @@ function getClients() {
     })
 }
 
+function getProfilById(id) {
+    const token = localStorage.getItem("authorization");
+    return axios.get(`http://localhost:3000/clients/${id}`, {
+        headers: {
+            authorization: token
+        }
+    })
+}
+
 function resetPassword(token, data) {
     return axios.post(`http://localhost:3000/clients/password_reset/${token}`, data, 
     {
@@ -42,4 +51,4 @@ function sendEmailToChangePassword(email) {
 }
 
 
-export default {getProfil, editProfil, getClients, resetPassword, sendEmailToChangePassword};
+export default {getProfil, editProfil, getClients, resetPassword, sendEmailToChangePassword, getProfilById};

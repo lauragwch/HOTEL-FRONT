@@ -10,6 +10,7 @@ import reservationsService from "../Services/reservationsService";
 import profilService from "../Services/profilService";
 import "../styles/adminPage.css";
 import { jwtDecode } from "jwt-decode";
+import  HotelCalendar  from "../Components/hotelCalendar";
 
 const AdminPage = () => {
     const navigate = useNavigate();
@@ -100,7 +101,7 @@ const AdminPage = () => {
         }
     };
 
-    const fetchClients = async () => {  
+    const fetchClients = async () => {
         try {
             const response = await profilService.getClients();
             console.log("Données des clients :", response.data);
@@ -478,7 +479,7 @@ const AdminPage = () => {
                                                 onChange={(e) => setReservations(reservations.map(r => r.id_reservation === reservation.id_reservation ? { ...r, editedTotalPrice: parseFloat(e.target.value) || 0 } : r))}
                                             />
                                         </td>
-                                    
+
 
                                         <td>
                                             <Form.Control
@@ -490,8 +491,8 @@ const AdminPage = () => {
                                                 <option value="En attente de validation">En attente de validation</option>
                                                 <option value="Confirmée">Confirmée</option>
                                                 <option value="Annulée">Annulée</option>
-                                            
-                                                </Form.Control>
+
+                                            </Form.Control>
                                         </td>
                                         <td>
                                             <Form.Check
@@ -514,7 +515,7 @@ const AdminPage = () => {
                 <Accordion.Item eventKey="3">
                     <Accordion.Header>Clients</Accordion.Header>
                     <Accordion.Body>
-                    <Table striped bordered hover responsive className="reservations-table">
+                        <Table striped bordered hover responsive className="reservations-table">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -579,7 +580,7 @@ const AdminPage = () => {
                                                     setError("Erreur lors de l'envoi de l'email.");
                                                     console.error(err);
                                                 }
-                                                
+
                                             }} >Envoi d'email</Button>
                                         </td>
                                     </tr>
@@ -587,9 +588,17 @@ const AdminPage = () => {
                             </tbody>
                         </Table>
                     </Accordion.Body>
-                </Accordion.Item>    
+                </Accordion.Item>
             </Accordion>
+
+
+            <div className="w-100 mt-5">
+                <HotelCalendar />
+            </div>
         </div>
+
+
+
     );
 };
 
