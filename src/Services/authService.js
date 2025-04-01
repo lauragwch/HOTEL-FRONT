@@ -1,10 +1,10 @@
 import axios from "axios";
 import {jwtDecode} from "jwt-decode";
 
-const API_URL = 'http://localhost:3000/auth';
+const API_URL = 'http://localhost:3002/auth';
 
 function login (user) {
-    return axios.post('http://localhost:3000/auth/login', user);
+    return axios.post('http://localhost:3002/auth/login', user);
 }
 
 function logout () {

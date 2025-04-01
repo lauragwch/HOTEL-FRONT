@@ -2,7 +2,7 @@ import axios from "axios";
 
 function getProfil() {
     const token = localStorage.getItem("authorization");
-    return axios.get("http://localhost:3000/clients/me", {
+    return axios.get("http://localhost:3002/clients/me", {
         headers: {
             authorization: token
         }
@@ -12,7 +12,7 @@ function getProfil() {
 
 function editProfil(id, user) {
     const token = localStorage.getItem("authorization");
-    return axios.patch(`http://localhost:3000/clients/${id}`, user, {
+    return axios.patch(`http://localhost:3002/clients/${id}`, user, {
         headers: {
             authorization: token
         }
@@ -21,7 +21,7 @@ function editProfil(id, user) {
 
 function getClients() {
     const token = localStorage.getItem("authorization");
-    return axios.get("http://localhost:3000/clients", {
+    return axios.get("http://localhost:3002/clients", {
         headers: {
             authorization: token
         }
@@ -30,7 +30,7 @@ function getClients() {
 
 function getProfilById(id) {
     const token = localStorage.getItem("authorization");
-    return axios.get(`http://localhost:3000/clients/${id}`, {
+    return axios.get(`http://localhost:3002/clients/${id}`, {
         headers: {
             authorization: token
         }
@@ -38,7 +38,7 @@ function getProfilById(id) {
 }
 
 function resetPassword(token, data) {
-    return axios.post(`http://localhost:3000/clients/password_reset/${token}`, data, 
+    return axios.post(`http://localhost:3002/clients/password_reset/${token}`, data, 
     {
         headers: {
             authorization: token
@@ -47,7 +47,7 @@ function resetPassword(token, data) {
 }
 
 function sendEmailToChangePassword(email) {
-    return axios.post(`http://localhost:3000/clients/password_forget`, email)
+    return axios.post(`http://localhost:3002/clients/password_forget`, email)
 }
 
 

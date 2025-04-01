@@ -2,10 +2,10 @@ import axios from "axios";
 const API_URL = import.meta.env.VITE_URL_API;
 
 function getServices() {
-    return axios.get("http://localhost:3000/services");
+    return axios.get("http://localhost:3002/services");
 }
 function getServiceById(id) {
-    return axios.get(`http://localhost:3000/services/${id}`);
+    return axios.get(`http://localhost:3002/services/${id}`);
 }
 
 function updateService(id, data) {
@@ -23,14 +23,14 @@ function updateService(id, data) {
 
 function addService(data) {
     const token = localStorage.getItem("authorization");
-    return axios.post("http://localhost:3000/services", data, {
+    return axios.post("http://localhost:3002/services", data, {
         headers: { authorization: token },
     });
 }
 
 function deleteService(id) {
     const token = localStorage.getItem("authorization");
-    return axios.delete(`http://localhost:3000/services/${id}`, {
+    return axios.delete(`http://localhost:3002/services/${id}`, {
         headers: { authorization: token },
     });
 }
